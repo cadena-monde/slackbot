@@ -8,7 +8,9 @@ Create a new instance of SlackBot specifying the URL of Slack and the access tok
 
 Example:
 
-```func SendSlackNotification() {
+```
+func SendSlackNotification() {
 	b := slackbot.New("https://my_slack_hook_url", "my_slack_token")
 	b.PostMessage("#random", "All your base ")
-}```
+}
+```

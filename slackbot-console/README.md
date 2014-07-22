@@ -1,14 +1,18 @@
-# Slackbot api wrapper
+# Slackbot-Console
 
-## Config
+Go console application to send messages to a Slack channel using command line params.
 
-Definir as seguintes variáveis de ambiente:
+## Configuration
 
-- SLACKBOT_URL - Ex: https://cadena-monde.slack.com/services/hooks/slackbot
-- SLACKBOT_TOKEN - Token gerado pelo Slack
+The application uses the following environment variables:
 
-## Uso:
+- SLACKBOT_URL - Ex: https://my_account_name.slack.com/services/hooks/slackbot.
+- SLACKBOT_TOKEN - Slack generated token.
 
-Necessário informar o canal e a mensagem, exemplo:
+## Usage:
 
-    slacbot-console.exe -canal="#random" -mensagem="All your base are belong to us!"
+Call the application passing the channel and the message through command line params:
+
+```
+    slacbot-console.exe -channel="#random" -message="All your base are belong to us!"
+```

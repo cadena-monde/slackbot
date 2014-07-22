@@ -7,7 +7,7 @@ import (
 )
 
 var (
-	canal, mensagem string
+	channel, message string
 	slackURL        = os.Getenv("SLACKBOT_URL")
 	token           = os.Getenv("SLACKBOT_TOKEN")
 )
@@ -18,11 +18,11 @@ func main() {
 }
 
 func parseFlags() {
-	flag.StringVar(&canal, "canal", "", "Canal. Ex: #random")
-	flag.StringVar(&mensagem, "mensagem", "", "Mensagem para enviar ao canal")
+	flag.StringVar(&channel, "channel", "", "Channel. Ex: #random")
+	flag.StringVar(&message, "message", "", "Message to be sent to the channel")
 	flag.Parse()
 
-	if canal == "" || mensagem == "" {
+	if channel == "" || message == "" {
 		flag.Usage()
 		os.Exit(1)
 	}
@@ -30,5 +30,5 @@ func parseFlags() {
 
 func postMessage() {
 	b := slackbot.New(slackURL, token)
-	b.PostMessage(canal, mensagem)
+	b.PostMessage(channel, message)
 }
