@@ -9,7 +9,7 @@ The application uses the following environment variables:
 - SLACKBOT_URL - Ex: https://my_account_name.slack.com/services/hooks/slackbot.
 - SLACKBOT_TOKEN - Slack generated token.
 
-## Usage:
+## Usage
 
 Call the application passing the channel and the message through command line params:
 
