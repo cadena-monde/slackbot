@@ -14,5 +14,13 @@ The application uses the following environment variables:
 Call the application passing the channel and the message through command line params:
 
 ```
-    slacbot-console.exe -channel="#random" -message="All your base are belong to us!"
+    slackbot-console.exe -channel="#random" -message="All your base are belong to us!"
 ```
+
+### Reading the message from stdin
+
+You can also pass a message from the stding, example:
+
+    type file.txt | slackbot-console.exe -channel="#random" -message="Title"
+
+In this case, the contents from the stdin are enclosed by ``` to be displayed as pre formatted text on slack.
