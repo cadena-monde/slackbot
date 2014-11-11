@@ -30,7 +30,7 @@ func readFromStdin() {
 
 	inputString := input.String()
 	if inputString != "" {
-		message = fmt.Sprintf("%s\n```%s```", message, input.String())
+		message = fmt.Sprintf("%s\n```%s```", message, inputString)
 		message = strings.Replace(message, "\r", "", -1)
 	}
 }
