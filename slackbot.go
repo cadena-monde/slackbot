@@ -1,3 +1,4 @@
+//Package slackbot allows posting messages to Slack using the Slackbot API
 package slackbot
 
 import (
@@ -8,35 +9,36 @@ import (
 	"net/url"
 )
 
-
+// SlackBot stores the the current config and methods
 type SlackBot struct {
 	url string
-	token string
 }
 
-func New(url, token string) SlackBot {
-	b := SlackBot{}
-	b.url = url
-	b.token = token
-	return b
+// New configures a new SlackBot instance with the given url
+func New(url string) SlackBot {
+	return SlackBot{url: url}
 }
 
-func (bot SlackBot) buildURL(channel string) *url.URL {
+func (bot SlackBot) buildURL(channel string) (*url.URL, error) {
 	u, err := url.Parse(bot.url)
 	if err != nil {
-		log.Fatal(err)
+		return nil, err
 	}
 	q := u.Query()
-	q.Set("token", bot.token)
 	q.Set("channel", channel)
 	u.RawQuery = q.Encode()
 
-	log.Println("URL: ", u.String())
-	return u
+	return u, nil
 }
 
+// PostMessage sends the given message to the given channel as Slackbot
 func (bot SlackBot) PostMessage(channel, message string) error {
-	r, err := http.Post(bot.buildURL(channel).String(), "text/plain", bytes.NewBufferString(message))
+	url, err := bot.buildURL(channel)
+	if err != nil {
+		log.Printf("Error building the URL: %v", err)
+		return err
+	}
+	r, err := http.Post(url.String(), "text/plain", bytes.NewBufferString(message))
 	if err != nil {
 		return err
 	}

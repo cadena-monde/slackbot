@@ -4,19 +4,23 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
-	"github.com/cadena-monde/slackbot"
 	"os"
 	"strings"
+
+	"github.com/monde-sistemas/slackbot"
 )
 
 var (
 	channel, message string
 	stdin            bool
 	slackURL         = os.Getenv("SLACKBOT_URL")
-	token            = os.Getenv("SLACKBOT_TOKEN")
 )
 
 func main() {
+	if strings.TrimSpace(slackURL) == "" {
+		fmt.Println("Slackbot URL not found in environment")
+		os.Exit(1)
+	}
 	parseFlags()
 	if stdin {
 		readFromStdin()
@@ -48,6 +52,6 @@ func parseFlags() {
 }
 
 func postMessage() {
-	b := slackbot.New(slackURL, token)
+	b := slackbot.New(slackURL)
 	b.PostMessage(channel, message)
 }
